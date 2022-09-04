@@ -1,0 +1,9 @@
+{
+    "default": {
+        "environment": "python__anaconda3-2021.05__ita",
+        "time_limit": 5,
+        "memory_limit": 256
+    },
+    "override": {
+    }
+}
