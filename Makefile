@@ -18,9 +18,12 @@ endif
 
 all:	conf.zip
 
-conf.zip:	$(MASTERS) $(PREFILLS) judge_env.json test_mod.json
+conf.zip:	$(MASTERS) $(PREFILLS) judge_env.json drive.json test_mod.json
 	mkdir -p $(FORM_DIR)
-	python3 plags_scripts/build_as_is.py -f $(FORM_DIR) -c judge_env.json -ag test_mod.json -bt plags_scripts/rawcheck_as_is.py -ac -qc $(MASTERS)
+	python3 plags_scripts/build_as_is.py -f $(FORM_DIR) -gd drive.json -c judge_env.json -ag test_mod.json -bt plags_scripts/rawcheck_as_is.py -ac -qc $(MASTERS)
+
+drive.json:
+	echo '{}' > $@
 
 $(PREFILLS):
 	touch $@

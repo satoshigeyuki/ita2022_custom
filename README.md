@@ -65,6 +65,21 @@ make
 `answers` には模範解答を置き，誤答例を別ディレクトリ（例えば `wrong_answers`）に置くと便利である．
 このとき，誤答例をテストするときには `make ANSWER_DIR=wrong_answers test` を実行すればよい．
 
+### form配布
+
+9. `forms` の中身を適当なGoogle Drive上にアップロードし，学生に閲覧権限を与える．
+10. `drive.json` を更新
+    * 課題名をキー，formのDrive ID/URLを値とした辞書．
+    * 例： `{"${exericse_key}": "${DriveID}"}`
+    * `${DriveID}` の代わりに `https://colab.research.google.com/drive/${DriveID}` や `https://drive.google.com/file/d/${DriveID}/` でも良い．
+11. `make` を実行
+    * これで作られた `conf.zip` をアップロードすると，`drive.json` にしたがって課題一覧表にColabリンクが生じる．
+
+⚠️ ブラウザ上の課題設定からでもColabリンクを設定できる．しかし，同課題を再度アップロードすると，ブラウザ上で設定したリンクが空に上書きされて消えてしまう．課題の漸次追加や更新を想定するなら，`drive.json` に Drive ID/URL を記述しておく方が扱いやすい．
+
+⚠️ `conf.zip` はColabリンクをアップロードするだけで，formの実体はアップロードしない．formを更新した際は，Drive上のformを別途更新する必要がある．ただし，Drive上のファイルを上書き更新しても，Drive IDは不変なので，`drive.json` は更新する必要はない．
+
+
 ## デプロイ用設定ファイル
 
 * `judge_env.json`: 自動評価のサーバ側の設定が記述されている管理者指定のファイル．**変更禁止**．
